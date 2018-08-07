@@ -1,5 +1,11 @@
 @extends('layouts.master',['title'=>'Sortir_visite'])
 @section('content')
+@if ($message = Session::get('success'))
+<div class="alert alert-success alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+        <strong>{{ $message }}</strong>
+</div>
+@endif
     <section id="main_content">
         <div class="col-lg-12">
             <div class="card">

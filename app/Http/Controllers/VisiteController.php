@@ -24,7 +24,7 @@ class VisiteController extends Controller
             $$data = array([
                     "id"=>$visiteurs->id,
                     "nom"=>$visiteurs->nom.' '.$visiteurs->prenoms,
-                    "nom_hote"=>$visite_hote->hote->nom_hote.' '.$visite_hote->hote->prenoms_hote,
+                    "nom_hote"=>$visite_hote->hote->nom_prenom_hote,
                     "heure" => $visite->heure_entre
                 ]);
             $tab [] = $$data;
@@ -40,12 +40,12 @@ class VisiteController extends Controller
     }
    public function modifier(Request $request)
     {
-        $visite_update = Visite::where('visiteur_id','=',$request->visi_id)->first();
+        $visite_update = Visite::where('visiteur_id','=',$request->visi_id)->whereNull('heure_sortie')->first();
         //$visite_update = Visite::find($visite_update->id);
         $visite_update->heure_sortie = date("H:i:s");
         $visite_update->save();
-        return redirect()->route('visite_list');
-        //dd($visite_update);
+        return redirect()->route('visite_list')->with('success','Sortie validée avec succès.');
+        
     }
     public function search_ajax(Request $request)
     {
