@@ -36,7 +36,20 @@ class creer_visiteController extends Controller
         }
         return response()->json($data);
     }
-
+     // fonction ajax pour recuperer les informations de l'hote
+    public function hote(Request $request)
+    {
+        $query = $request->get('term','');
+        $hotes = Hote::where('nom_prenom_hote','LIKE','%'.$query.'%')->get();      
+        $data=array();
+        foreach ($hotes as $hote) {
+                $direction_hote = Direction::find($hote->direction_id);
+                $data[]=array('nom_hote'=>$hote->nom_prenom_hote,
+                    'direction'=>$direction_hote->lib_direction);
+        }
+        return response()->json($data);
+    }
+    // enregistrer les visites
     public function store(StoreRequest $request)
     {
     	   
@@ -111,13 +124,11 @@ class creer_visiteController extends Controller
                 }
             // enregistrer un hote
             $hote = Hote::where('direction_id','=',session('nouvelDirection_id'))
-                        ->where('nom_hote','=',$request->nom_hote)
-                        ->where('prenoms_hote','=',$request->prenoms_hote)->first();
+                        ->where('nom_prenom_hote','=',$request->nom_prenom_hote)->first();
                if(empty($hote))
                {
                 $hote = Hote::create([
-                                    'nom_hote' =>$request->nom_hote,
-                                    'prenoms_hote' =>$request->prenoms_hote,
+                                    'nom_prenom_hote' =>$request->nom_prenom_hote
                                 ]);
                            $max_hote = Hote::max('id');
                            session(['hote_id' => $max_hote
@@ -153,7 +164,8 @@ class creer_visiteController extends Controller
                             'type_piece' => $request->type_piece,
                             'nom' => $request->nom,
                             'prenoms' => $request->prenoms,
-                            'contact' => $request->contact
+                            'contact' => $request->contact,
+                            'badge' => $request->badge
                         ]);
                     $max_visiteur = Visiteur::max('id');
                      session(['visiteur_id' => $max_visiteur
@@ -172,7 +184,8 @@ class creer_visiteController extends Controller
                         'type_piece' => $visiteur_trouve->type_piece,
                         'nom' => $visiteur_trouve->nom,
                         'prenoms' => $visiteur_trouve->prenoms,
-                        'contact' => $visiteur_trouve->contact
+                        'contact' => $visiteur_trouve->contact,
+                        'badge' => $visiteur_trouve->badge
                     ]);
                    $visiteur = Visiteur::find($visiteur_trouve->id);
                    $visiteur->updated_at = date("Y-m-d H:i:s");

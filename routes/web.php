@@ -16,6 +16,7 @@ Route::get('/index','IndexController@show')->name('index');
 // route for visitor register
 Route::get('/visites','creer_visiteController@show')->name('visites');
 Route::get('/visite_search','creer_visiteController@search')->name('visite_search');
+Route::get('/hote_search','creer_visiteController@hote')->name('hote_search');
 Route::post('/visites','creer_visiteController@store')->name('enregistrer_visite');
 // visite not validated route 
 Route::get('/sortir_visite','VisiteController@show')->name('visite_list');

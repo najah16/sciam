@@ -100,4 +100,44 @@
 
     // end script 
     // live search visite table 
-   
+   $(document).on('focus','.autocomplete_hote',function(){
+              var type = $(this).data('type');
+              var autoType = 'nom_hote';
+              var urls = '/hote_search';
+               $(this).autocomplete({
+                   minLength: 2,
+                   source: function( request, response ) {
+                        $.ajax({
+                            url: urls,
+                            dataType: "json",
+                            data: {
+                                term : request.term,
+                                type : type,
+                            },
+                            success: function(data) {
+                                var array = $.map(data, function (item) {
+                                   return {
+                                       label: item[autoType],
+                                       value: item[autoType],
+                                       data : item
+                                   }
+                               });
+                                response(array)
+                            },
+                           error: function(data) {
+                            alert('no');
+                           }
+                        });
+                   },
+                   select: function( event, ui ) {
+                       var data = ui.item.data;           
+                       id_arr = $(this).attr('id');
+                       id = id_arr.split("_");
+                       elementId = id[id.length-1];
+                       $('#nom_hote'+elementId).val(data.nom_prenom_hote);
+                       $('#direction_'+elementId).val(data.direction);
+                   }
+               });
+               
+               
+            });

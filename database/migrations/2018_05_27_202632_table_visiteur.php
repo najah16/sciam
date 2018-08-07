@@ -20,6 +20,7 @@ class TableVisiteur extends Migration
             $table->string('nom');
             $table->string('prenoms');
             $table->string('contact');
+            $table->integer('badge');
             $table->timestamps();
         });
     }

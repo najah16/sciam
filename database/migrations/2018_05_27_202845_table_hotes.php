@@ -15,8 +15,7 @@ class TableHotes extends Migration
     {
         Schema::create('hotes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nom_hote');
-            $table->string('prenoms_hote');
+            $table->string('nom_prenom_hote');
             $table->integer('direction_id')->nullable();
             $table->timestamps();
         });

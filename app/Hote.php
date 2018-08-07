@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hote extends Model
 {
-    protected $fillable = ['nom_hote','prenoms_hote', 'direction_id','updated_at'];
+    protected $fillable = ['nom_prenom_hote','direction_id','updated_at'];
     public function direction()
     {
     	return $this->belongsTo(Direction::class);

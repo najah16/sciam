@@ -28,24 +28,24 @@ class StoreRequest extends FormRequest
             'nom' => 'required|min:2:|regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ\']+$/',
             'prenoms' => 'required|min:2|regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ\'. ?]+$/',
            'contact' => 'required|max:8|regex:/^[0-9]{8}$/',
+            'badge' => 'required|max:3|regex:/^[0-9]+$/',
             'lib_direction' => 'required|min:3|regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.\' ?]+$/',
             'contact_direction' => 'required|max:8|regex:/^[0-9]{8}$/',
-            'nom_hote' => 'required|min:2:|regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ\']+$/',
-            'prenoms_hote' => 'required|min:2|regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ\'. ?]+$/' 
+            'nom_prenom_hote' => 'required|min:2|regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ\'. ?]+$/' 
         ];
     }
 
      public function messages()
     {
         return [
-            'num_piece.required' => 'Veuillez bien renseigner le champ numero de piece',
-            'nom.required'  => 'Veuillez bien renseigner le champ nom',
-            'prenoms.required'  => 'Veuillez bien renseigner le champ prenoms',
-            'contact.required'  => 'Veuillez bien renseigner le champ contact',
-            'lib_direction.required' => 'La direction n\'a pas été renseignée',
-            'contact_direction.required'  => 'Le contact n\'a pas été renseignée',
-            'nom_hote.required'  => 'Le nom n\'a pas été renseignée',
-            'prenoms_hote.required'  => 'Le prenom n\'a pas été renseignée',
+            'num_piece.required' => 'Renseigner correctement le numero de piece.',
+            'nom.required'  => 'Renseigner correctement le nom du visiteur.',
+            'prenoms.required'  => 'Renseigner correctement le prenom visiteur.',
+            'contact.required'  => 'Renseigner correctement le contact du visiteur.',
+            'badge.required' => 'Renseigner correctement le numero de badge.',
+            'lib_direction.required' => 'Renseigner correctement le nom de la direction.',
+            'contact_direction.required'  => 'Renseigner correctement le contact de la direction.',
+            'nom_prenom_hote.required'  => 'Renseigner correctement le nom et prénoms de l\'hote.',
         ];
     }
 }

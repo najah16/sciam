@@ -30,19 +30,19 @@
                                             <select class="form-control col-lg-4" name="lib_etage" id="lib_etage_1">
                                             <option value="0">Choisir le numero de l'étage</option>
                                             <option value="pompier">Rez de chaussée</option>
-                                            <option value="Premier etage">1er</option>
-                                            <option value="Deuxieme etage">2e</option>
-                                            <option value="Troisieme etage">3e</option>
-                                            <option value="Quatrieme etage">4e</option>
-                                            <option value="Cinquieme etage">5e</option>
-                                            <option value="Sixieme etage">6e</option>
-                                            <option value="Septieme etage">7e</option>
-                                            <option value="Huitieme etage">8e</option>
-                                            <option value="Neuvieme etage">9e</option>
-                                            <option value="Dixieme etage">10e</option>
-                                            <option value="Onzieme etage">11e</option>
-                                            <option value="Douzieme etage">12e</option>
-                                            <option value="Treizieme etage">13e</option>
+                                            <option value="1er">1er</option>
+                                            <option value="2e">2e</option>
+                                            <option value="3e">3e</option>
+                                            <option value="4e">4e</option>
+                                            <option value="5e">5e</option>
+                                            <option value="6e">6e</option>
+                                            <option value="7e">7e</option>
+                                            <option value="8e">8e</option>
+                                            <option value="9e">9e</option>
+                                            <option value="10e">10e</option>
+                                            <option value="11e">11e</option>
+                                            <option value="12e">12e</option>
+                                            <option value="13">13e</option>
                                         </select>            
                                         </div>
                                     </div>
@@ -78,8 +78,8 @@
                                              <span class="help-block prenoms-error"></span>
                                              <div class="col-lg-2"></div>
                                              <div class="input-group-addon"><i class="ti-user"></i></div>
-                                             <input type="text" class="form-control autocomplete_hote col-lg-4" data-type="nom_hote" 
-                                                                    id="nom_hote_1" placeholder="Nom" name="nom_hote">
+                                             <input type="text" class="form-control autocomplete_hote col-lg-4" name="nom_prenom_hote" 
+                                             data-type="nom_hote" id="nom_hote_1">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -88,8 +88,17 @@
                                             <input type="text" class="form-control col-lg-4" placeholder="Contact" name="contact" id="contact_1">
                                              <span class="help-block contact-error"></span>
                                              <div class="col-lg-2"></div>
-                                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                                             <input type="text" class="form-control col-lg-4" id="prenoms_hote_1" placeholder="Prénom" name="prenoms_hote">
+                                             <!--<div class="input-group-addon"><i class="ti-user"></i></div>
+                                             <input type="text" class="form-control col-lg-4" id="prenoms_hote_1" placeholder="Prénom" name="prenoms_hote">-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-credit-card"></i></div>
+                                            <input type="text" class="form-control col-lg-4" placeholder="Numero de badge" name="badge">
+                                             <span class="help-block contact-error"></span>
+                                             <div class="col-lg-2"></div>
+                                             
                                         </div>
                                     </div>
                                     <hr>
