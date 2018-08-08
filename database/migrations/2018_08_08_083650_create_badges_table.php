@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableVisiteur extends Migration
+class CreateBadgesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class TableVisiteur extends Migration
      */
     public function up()
     {
-        Schema::create('visiteurs', function (Blueprint $table) {
+        Schema::create('badges', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('num_piece')->unique();
-            $table->string('type_piece');
-            $table->string('nom');
-            $table->string('prenoms');
-            $table->string('contact');
+            $table->integer('num_badge');
+            $table->string('status');
+            $table->integer('direction_id')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class TableVisiteur extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('visiteurs');
+        Schema::dropIfExists('badges');
     }
 }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Etage;
 use App\Hote;
+use App\Badge;
 
 class Direction extends Model
 {
@@ -16,5 +17,9 @@ class Direction extends Model
     public function hotes()
     {
     	return $this->hasMany(Hote::class);
+    }
+    public function badges()
+    {
+    	return $this->hasMany(Badge::class);
     }
 }

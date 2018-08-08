@@ -58,8 +58,7 @@ class VisiteOfDayController extends Controller
             'num_piece' =>$visites->visiteur->num_piece,
             'contact' =>$visites->visiteur->contact,
             'nom_hotesse'=>$visites->nom_hotesse,
-            'nom_hote'=>$visites->hote->nom_hote,
-            'prenoms_hote'=>$visites->hote->prenoms_hote,
+            'nom_prenom_hote'=>$visites->hote->nom_hote,
             'direction'=>$directions->lib_direction,
             'direction_contact'=>$directions->contact_direction,
             'etage'=>$etages->lib_etage

@@ -13,6 +13,12 @@
     <div id="msg" class="alert  "> 
                                                 
     </div>
+    @if ($message = Session::get('danger'))
+        <div class="alert alert-danger alert-block">
+          <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{{ $message }}</strong>
+        </div>
+    @endif
          <div class="row">
              <div class="col-lg-12">
                 <div class="card">
@@ -79,7 +85,7 @@
                                              <div class="col-lg-2"></div>
                                              <div class="input-group-addon"><i class="ti-user"></i></div>
                                              <input type="text" class="form-control autocomplete_hote col-lg-4" name="nom_prenom_hote" 
-                                             data-type="nom_hote" id="nom_hote_1">
+                                             data-type="nom_hote" id="nom_hote_1" placeholder="Nom et Prénoms">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -88,24 +94,16 @@
                                             <input type="text" class="form-control col-lg-4" placeholder="Contact" name="contact" id="contact_1">
                                              <span class="help-block contact-error"></span>
                                              <div class="col-lg-2"></div>
-                                             <!--<div class="input-group-addon"><i class="ti-user"></i></div>
-                                             <input type="text" class="form-control col-lg-4" id="prenoms_hote_1" placeholder="Prénom" name="prenoms_hote">-->
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="ti-credit-card"></i></div>
-                                            <input type="text" class="form-control col-lg-4" placeholder="Numero de badge" name="badge">
+                                             <div class="input-group-addon"><i class="ti-credit-card"></i></div>
+                                             <input type="text" class="form-control col-lg-4" placeholder="Numero de badge" name="badge">
                                              <span class="help-block contact-error"></span>
-                                             <div class="col-lg-2"></div>
-                                             
                                         </div>
                                     </div>
                                     <hr>
                                     
                                     <div class="text-left">
                                          <button type="submit" class="btn btn-success waves-effect waves-light m-r-10 btn-envoyer">Enregistrer</button>
-                                         <!--<button type="erase" class="btn btn-inverse waves-effect waves-light">Annuler</button>-->
+                                         <button type="reset" class="btn btn-inverse waves-effect waves-light">Annuler</button>
                                     </div>
                         </form>
                     </div>

@@ -11,6 +11,7 @@ use App\Direction;
 use App\Etage;
 use App\DirectionEtage;
 use App\Hote;
+use App\Badge;
 use Illuminate\Support\Facades\Auth;
 
 class creer_visiteController extends Controller
@@ -94,6 +95,7 @@ class creer_visiteController extends Controller
                             'created_at' => date("Y-m-d H:i:s"),
                             'updated_at' => date("Y-m-d H:i:s")]
                         );
+
                 }
                 else
                 {
@@ -122,6 +124,22 @@ class creer_visiteController extends Controller
                          
                     }
                 }
+            // enregistrer un badge 
+                $badge = Badge::where('direction_id','=',session('nouvelDirection_id'))
+                         ->where('status','=','en cours')->first();
+                if(empty($badge))
+                {
+                    $badge = Badge::create([
+                    'num_badge' => $request->badge,
+                    'direction_id' => session('nouvelDirection_id'),
+                    'status' => 'en cours'
+                   ]);
+                }
+                else
+                {
+                    return redirect()->route('visites')->with('danger',' Ce badge est utilisé actuellement.');
+                }
+                
             // enregistrer un hote
             $hote = Hote::where('direction_id','=',session('nouvelDirection_id'))
                         ->where('nom_prenom_hote','=',$request->nom_prenom_hote)->first();
@@ -165,7 +183,6 @@ class creer_visiteController extends Controller
                             'nom' => $request->nom,
                             'prenoms' => $request->prenoms,
                             'contact' => $request->contact,
-                            'badge' => $request->badge
                         ]);
                     $max_visiteur = Visiteur::max('id');
                      session(['visiteur_id' => $max_visiteur

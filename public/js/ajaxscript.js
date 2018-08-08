@@ -99,7 +99,7 @@
             });
 
     // end script 
-    // live search visite table 
+    // hote live search
    $(document).on('focus','.autocomplete_hote',function(){
               var type = $(this).data('type');
               var autoType = 'nom_hote';

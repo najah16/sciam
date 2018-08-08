@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Visiteur;
 use App\Visite;
+use App\direction;
+use App\Hote;
+use App\Badge;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class VisiteController extends Controller
@@ -41,7 +44,12 @@ class VisiteController extends Controller
    public function modifier(Request $request)
     {
         $visite_update = Visite::where('visiteur_id','=',$request->visi_id)->whereNull('heure_sortie')->first();
-        //$visite_update = Visite::find($visite_update->id);
+        $hote_badge = Hote::find($visite_update->hote_id);
+        $hote_badge = $hote_badge->direction->id;
+        $badge_direction = Badge::where('direction_id','=',$hote_badge)
+                            ->where('status','=','en cours')->first();
+        $badge_direction->status = 'en arret';
+        $badge_direction->save();
         $visite_update->heure_sortie = date("H:i:s");
         $visite_update->save();
         return redirect()->route('visite_list')->with('success','Sortie validée avec succès.');
