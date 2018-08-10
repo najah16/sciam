@@ -31,6 +31,7 @@ Route::get('/visite_of_day_search','VisiteOfDayController@search_ajax')->name('v
 Route::get('/all_visits','All_visitsController@show')->name('all_visits');
 Route::get('/all_visits/{id}','All_visitsController@detail')->name('all_visits_details');
 Route::get('/all_visits_search','All_visitsController@search')->name('all_visits_search');
+Route::post('/all_visits','All_visitsController@date_search')->name('date_search');
 //  charts route 
 Route::get('/statistics','statController@show')->name('statistics');
 //*/

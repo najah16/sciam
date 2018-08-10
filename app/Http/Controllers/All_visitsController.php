@@ -28,7 +28,7 @@ class All_visitsController extends Controller
             $$data = array([
                     "id"=>$visite->id,
                     "nom"=>$visiteurs->nom.' '.$visiteurs->prenoms,
-                    "nom_hote"=>$visite_hote->hote->nom_hote.' '.$visite_hote->hote->prenoms_hote,
+                    "nom_hote"=>$visite_hote->hote->nom_prenom_hote,
                     "heure" => $visite->heure_entre,
                     "heure_sortie" => $visite->heure_sortie,
                     "date_visite" => $visite->date_visite
@@ -58,8 +58,7 @@ class All_visitsController extends Controller
             'type_piece' =>$visites->visiteur->type_piece,
             'num_piece' =>$visites->visiteur->num_piece,
             'contact' =>$visites->visiteur->contact,
-            'nom_hote'=>$visites->hote->nom_hote,
-            'prenoms_hote'=>$visites->hote->prenoms_hote,
+            'nom_hote'=>$visites->hote->nom_prenom_hote,
             'nom_hotesse'=>$visites->nom_hotesse,
             'direction'=>$directions->lib_direction,
             'direction_contact'=>$directions->contact_direction,
@@ -95,7 +94,7 @@ class All_visitsController extends Controller
                     $output .= '
                         <tr>
                              <td>'.$row->nom.' '.$row->prenoms.'</td>
-                             <td>'.$visite->hote->nom_hote.' '.$visite->hote->prenoms_hote.'</td>
+                             <td> '.$visite->hote->nom_prenom_hote.'</td>
                              <td>'.$visite->heure_entre.' </td>
                              <td> '.$visite->heure_sortie.'</td>
                              <td> '.$visite->date_visite.'</td>
@@ -120,5 +119,12 @@ class All_visitsController extends Controller
             return response()->json($data);
         }
     }
-
+    // date search function 
+    public function date_search(Request $request)
+    {
+       $date = $request->date;
+       //$data = date_format($date, "Y/m/d");
+       $data = $date;
+       return response()->json($data);
+    }
 }

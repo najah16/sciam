@@ -69,7 +69,7 @@
                                     <div class="form-group row"> 
                                         <div class="input-group">
                                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                                            <input type="text" name="nom" class="form-control col-lg-4" placeholder="Nom" id="nom_1">
+                                            <input type="text" name="nom" class="form-control col-lg-4 text-capitalize" placeholder="Nom" id="nom_1">
                                              <span class="help-block nom-error"></span>
                                              <div class="col-lg-2"></div>
                                              <div class="input-group-addon"><i class="ti-mobile"></i></div>
@@ -80,11 +80,11 @@
                                     <div class="form-group row"> 
                                         <div class="input-group">
                                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                                            <input type="text" class="form-control col-lg-4" placeholder="Prénoms" name="prenoms" id="prenoms_1">
+                                            <input type="text" class="form-control col-lg-4 text-capitalize" placeholder="Prénoms" name="prenoms" id="prenoms_1">
                                              <span class="help-block prenoms-error"></span>
                                              <div class="col-lg-2"></div>
                                              <div class="input-group-addon"><i class="ti-user"></i></div>
-                                             <input type="text" class="form-control autocomplete_hote col-lg-4" name="nom_prenom_hote" 
+                                             <input type="text" class="form-control autocomplete_hote col-lg-4 text-capitalize" name="nom_prenom_hote" 
                                              data-type="nom_hote" id="nom_hote_1" placeholder="Nom et Prénoms">
                                         </div>
                                     </div>

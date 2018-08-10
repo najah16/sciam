@@ -28,7 +28,7 @@ class VisiteOfDayController extends Controller
             $$data = array([
                     "id"=>$visite->id,
                     "nom"=>$visiteurs->nom.' '.$visiteurs->prenoms,
-                    "nom_hote"=>$visite_hote->hote->nom_hote.' '.$visite_hote->hote->prenoms_hote,
+                    "nom_prenom_hote"=>$visite_hote->hote->nom_prenom_hote,
                     "heure" => $visite->heure_entre,
                     "heure_sortie" => $visite->heure_sortie
                 ]);
@@ -58,7 +58,7 @@ class VisiteOfDayController extends Controller
             'num_piece' =>$visites->visiteur->num_piece,
             'contact' =>$visites->visiteur->contact,
             'nom_hotesse'=>$visites->nom_hotesse,
-            'nom_prenom_hote'=>$visites->hote->nom_hote,
+            'nom_hote'=>$visites->hote->nom_prenom_hote,
             'direction'=>$directions->lib_direction,
             'direction_contact'=>$directions->contact_direction,
             'etage'=>$etages->lib_etage

@@ -137,7 +137,77 @@
                        $('#nom_hote'+elementId).val(data.nom_prenom_hote);
                        $('#direction_'+elementId).val(data.direction);
                    }
-               });
-               
-               
+               });     
             });
+   // datepicker strict
+   (function($){
+      $.fn.datepicker.dates['fr'] = {
+      days: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
+      daysShort: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
+      daysMin: ["d", "l", "ma", "me", "j", "v", "s"],
+      months: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
+      monthsShort: ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."],
+      today: "Aujourd'hui",
+      monthsTitle: "Mois",
+      clear: "Effacer",
+      weekStart: 1,
+      format: "dd/mm/yyyy"
+      };
+      }(jQuery));
+
+      $('.datepicker').datepicker({
+      language: 'fr',
+      autoclose: true,
+      todayHighlight: true
+      })
+      // timepicker
+      $('.timepicker').timepicker({
+          timeFormat: 'HH:mm:ss',
+          interval: 30,
+          minTime: '08',
+          maxTime: '18:00pm',
+          defaultTime: '00',
+          startTime: '08:00',
+          dynamic: false,
+          dropdown: true,
+          scrollbar: true
+      });
+    // date search ajax script 
+   $(document).ready(function(){
+    $('#dateSearch').click(function(e){
+        e.preventDefault();
+        var urls = $(this).attr('action');
+        var  token = $('input[name=_token]').val();
+        var date = $('#date').val();
+        var hstart = $('#hstart').val();
+        var hend = $('#hend').val();
+         $.ajax({
+                    type: 'POST',
+                    url: urls,
+                    data: {
+                        '_token': token, 
+                        'date': date,
+                        'hstart': hstart,
+                        'hend': hend
+                      },
+                    dataType: 'json',
+                    success: function(data){
+                         console.log(data);
+
+                    },
+                    error: function(response)
+                    {
+                        if(response===422){
+                            var errors = response.responseJSON;
+                            $.each(json.responseJSON, function (key, value){
+                                $('.'+key+'-error').html(value);
+                            });
+                        } else {
+                            $('#msg').removeClass('alert-success');
+                            $('#msg').addClass('alert-danger');
+                            $('#msg').html('Données mal renseignées, veuillez recommencer.');
+                        }
+                    }
+                });
+    });
+   });

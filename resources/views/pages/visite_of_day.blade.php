@@ -35,7 +35,7 @@
                                                       
                                                       <tr>
                                                               <td>{{ $element2["nom"]}}</td>
-                                                              <td>{{ $element2["nom_hote"]}}</td>
+                                                              <td>{{ $element2["nom_prenom_hote"]}}</td>
                                                               <td>{{ $element2["heure"]}}</td>
                                                               <td>{{ $element2["heure_sortie"]}}</td>
                                                               
@@ -99,8 +99,8 @@
                                                   <hr>
                                                   <h4 style="text-align: center;">Hote</h4>
                                                   <span class="font-weight-bold">Nom: </span> <span id="nom_hote" class="text-right text-uppercase"></span></br>
-                                                  <span class="font-weight-bold">Prenoms:</span> <span id="prenoms_hote" class="text-right text-capitalize"></span>
-                                                  </br>
+                                                  <!--<span class="font-weight-bold">Prenoms:</span> <span id="prenoms_hote" class="text-right text-capitalize"></span>
+                                                  </br>-->
                                                   <span class="font-weight-bold">Direction:</span> <span id="direction" class="text-right text-capitalize"></span></br>
                                                   <span class="font-weight-bold">Contact: </span> <span id="direction_contact" class="font-weight-bold"></span></br>
                                                   <span class="font-weight-bold">Etage:</span> <span id="etage" class="text-right text-capitalize"></span>
@@ -163,8 +163,6 @@
                   $('#contact').append(data.contact);
                   $('#nom_hote').html('');
                   $('#nom_hote').append(data.nom_hote);
-                  $('#prenoms_hote').html('');
-                  $('#prenoms_hote').append(data.prenoms_hote);
                   $('#direction').html('');
                   $('#direction').append(data.direction);
                   $('#direction_contact').html('');

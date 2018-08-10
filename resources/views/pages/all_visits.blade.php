@@ -13,7 +13,40 @@
                                 
                             </div>
                         </div>
+                    </div>
+                    <form method="POST" action="/all_visits">
+                      {{csrf_field()}}
+                        <div class="float-left m-l-10 m-t-5">
+                            <div class="form-group">
+                                <div class="input-group input-group-default">
+
+                                    <input type="text" name="date" id="date" class="form-control datepicker" placeholder="JJ/MM/AAAA" />
+                                    
+                                </div>
+                            </div>
                         </div>
+                        <div class="float-left m-l-10 m-t-5">
+                            <div class="form-group">
+                                <div class="input-group input-group-default">
+
+                                    <input type="text" name="hstart" id="hstart" class="form-control timepicker"/>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-left m-l-10 m-t-5">
+                            <div class="form-group">
+                                <div class="input-group input-group-default">
+
+                                    <input type="text" name="hend" id="hend" class="form-control timepicker"/>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-left m-l-10 m-t-5">
+                          <button type="submit" class="btn btn-success waves-effect waves-light m-r-10 btn-envoyer" id="dateSearch"> Lancez</button>
+                        </div>
+                    </form>
                 </div>
                  <div class="bootstrap-data-table-panel">
                       <div class="table-responsive" id="tab_div">
@@ -21,7 +54,7 @@
                                       <thead>
                                           <tr>
                                               <th>Nom et prénoms</th>
-                                              <th>Numero de telephone</th>
+                                              <th>Nom de la personne visitée</th>
                                               <th>Heure d'entrée</th>
                                               <th>Heure de sortie</th>
                                               <th>Date</th>
@@ -59,7 +92,7 @@
                                       <thead>
                                           <tr>
                                               <th>Nom et prénoms</th>
-                                              <th>Numero de telephone</th>
+                                              <th>Nom de la personne visitée</th>
                                               <th>Heure d'entrée</th>
                                               <th>Heure de sortie</th>
                                               <th>Date</th>
@@ -101,8 +134,6 @@
                                                   <hr>
                                                   <h4 style="text-align: center;">Hote</h4>
                                                   <span class="font-weight-bold">Nom: </span> <span id="nom_hote" class="text-right text-uppercase"></span></br>
-                                                  <span class="font-weight-bold">Prenoms:</span> <span id="prenoms_hote" class="text-right text-capitalize"></span>
-                                                  </br>
                                                   <span class="font-weight-bold">Direction:</span> <span id="direction" class="text-right text-capitalize"></span></br>
                                                   <span class="font-weight-bold">Contact: </span> <span id="direction_contact" class="font-weight-bold"></span></br>
                                                   <span class="font-weight-bold">Etage:</span> <span id="etage" class="text-right text-capitalize"></span>
@@ -178,5 +209,10 @@
            }
           })
          });
+        // ajax date live search 
+        $(document).on('submit', '#dateSearch', function(e){
+          e.preventDefault();
+
+        })
     </script>
 @endsection
