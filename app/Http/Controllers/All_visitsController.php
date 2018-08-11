@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Visiteur;
 use App\Visite;
@@ -122,9 +122,43 @@ class All_visitsController extends Controller
     // date search function 
     public function date_search(Request $request)
     {
+       $output = '';
+       $hstart = $request->hstart;
+       $hend = $request->hend;
        $date = $request->date;
-       //$data = date_format($date, "Y/m/d");
-       $data = $date;
+       $data = new Carbon($date);
+       $data = $data->format('Y-m-d');
+       $data = Visite::whereDate('updated_at','=',$data)
+                ->whereBetween('heure_sortie',[$hstart,$hend])->get();
+       if(!empty($data))
+       {
+          foreach($data as $visites)
+                 {
+                    
+                    $visite = Visite::find($visites->id);
+                    $output .= '
+                        <tr>
+                             <td>'.$visites->visiteur->nom.' '.$visites->visiteur->prenoms.'</td>
+                             <td> '.$visite->hote->nom_prenom_hote.'</td>
+                             <td>'.$visite->heure_entre.' </td>
+                             <td> '.$visite->heure_sortie.'</td>
+                             <td> '.$visite->date_visite.'</td>
+                           <td><a class="show-modal btn btn-info btn-sm-5" data-id="'.$visite->id.'" href="/all_visits/'.$visite->id.'">Details</td>
+                       </tr>
+                    ';
+                }
+       }
+       else
+       {
+            $output = '
+                       <tr>
+                        <td align="center" colspan="5">No Data Found</td>
+                       </tr>
+                   ';
+       }
+       $data = array(
+               'table_data'  => $output,
+              );
        return response()->json($data);
     }
 }

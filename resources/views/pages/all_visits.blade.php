@@ -86,6 +86,7 @@
                               
                       </div>
                   </div>
+                  <!-- ajax name search table -->
                   <div class="bootstrap-data-table-panel hidden" id="second_tab">
                         <div class="table-responsive">
                                   <table id="row-select" class="display table table-borderd table-hover">
@@ -101,6 +102,29 @@
                                           </tr>
                                       </thead>
                                       <tbody id="second_body">
+                                          
+                                      </tbody>
+                                  </table>
+                                
+                              
+                      </div>
+                  </div>
+                  <!-- ajax date search table -->
+                  <div class="bootstrap-data-table-panel hidden" id="third_tab">
+                        <div class="table-responsive">
+                                  <table id="row-select" class="display table table-borderd table-hover">
+                                      <thead>
+                                          <tr>
+                                              <th>Nom et prénoms</th>
+                                              <th>Nom de la personne visitée</th>
+                                              <th>Heure d'entrée</th>
+                                              <th>Heure de sortie</th>
+                                              <th>Date</th>
+                                               <th></th>
+                                              
+                                          </tr>
+                                      </thead>
+                                      <tbody id="third_body">
                                           
                                       </tbody>
                                   </table>
@@ -209,10 +233,5 @@
            }
           })
          });
-        // ajax date live search 
-        $(document).on('submit', '#dateSearch', function(e){
-          e.preventDefault();
-
-        })
     </script>
 @endsection

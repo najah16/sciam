@@ -151,7 +151,7 @@
       monthsTitle: "Mois",
       clear: "Effacer",
       weekStart: 1,
-      format: "dd/mm/yyyy"
+      format: "dd-mm-yyyy"
       };
       }(jQuery));
 
@@ -165,7 +165,7 @@
           timeFormat: 'HH:mm:ss',
           interval: 30,
           minTime: '08',
-          maxTime: '18:00pm',
+          maxTime: '20:00pm',
           defaultTime: '00',
           startTime: '08:00',
           dynamic: false,
@@ -192,8 +192,9 @@
                       },
                     dataType: 'json',
                     success: function(data){
-                         console.log(data);
-
+                        $('#tab_div').remove();
+                        $('#third_tab').removeClass("hidden");
+                        $('#third_body').html(data.table_data);
                     },
                     error: function(response)
                     {
