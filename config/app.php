@@ -160,6 +160,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        // pdf provider 
+        Barryvdh\DomPDF\ServiceProvider::class,
         //  formcollective 
          Collective\Html\HtmlServiceProvider::class,
     ],
@@ -212,6 +214,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
          'Html' => Collective\Html\HtmlFacade::class,
+         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

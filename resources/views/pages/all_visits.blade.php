@@ -47,6 +47,9 @@
                           <button type="submit" class="btn btn-success waves-effect waves-light m-r-10 btn-envoyer" id="dateSearch"> Lancez</button>
                         </div>
                     </form>
+                    <div class="float-left m-l-10 m-t-5">
+                        <a href="{{url('/all_visits_pdf')}}"><button class="btn btn-success waves-effect waves-light m-r-10 btn-envoyer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button></a>
+                    </div>
                 </div>
                  <div class="bootstrap-data-table-panel">
                       <div class="table-responsive" id="tab_div">
@@ -80,8 +83,10 @@
                                                      </tr>
                                                   @endforeach
                                           @endforeach
-                                      </tbody>
+
+                                        </tbody>
                                   </table>
+                                  
                                   {{ $tab->links() }}
                               
                       </div>
@@ -127,6 +132,7 @@
                                       <tbody id="third_body">
                                           
                                       </tbody>
+
                                   </table>
                                 
                               

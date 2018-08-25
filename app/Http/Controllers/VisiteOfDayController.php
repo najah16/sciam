@@ -91,7 +91,7 @@ class VisiteOfDayController extends Controller
                     $output .= '
                         <tr>
                              <td>'.$row->nom.' '.$row->prenoms.'</td>
-                             <td>'.$visite->hote->nom_hote.' '.$visite->hote->prenoms_hote.'</td>
+                             <td>'.$visite->hote->nom_prenom_hote.'</td>
                              <td>'.$visite->heure_entre.' </td>
                              <td> '.$visite->heure_sortie.'</td>
                            <td><a class="show-modal btn btn-info btn-sm-5" data-id="'.$visite->id.'" href="/visite_of_day/'.$visite->id.'">Details</td>

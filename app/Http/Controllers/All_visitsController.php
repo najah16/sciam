@@ -10,18 +10,22 @@ use App\Direction;
 use App\Etage;
 use App\DirectionEtage;
 use Illuminate\Pagination\LengthAwarePaginator;
+use PDF;
 
 class All_visitsController extends Controller
 {
     public function show(Request $request)
     {
     	$jour = date("Y-m-d");
-        $visites = Visite::whereNotNull('heure_sortie')->where('date_visite','<>',$jour)->get();
+        $visites = Visite::whereNotNull('heure_sortie')->where('date_visite','<>',$jour)
+                   ->orderBy('date_visite','desc')->get();
     	$nb=0;
     	$tab = array();
     	foreach($visites as $visite)
     	{
-			$visite_hote = Visite::find($visite->id);
+			$date = new Carbon($visite->date_visite);
+            $date = $date->format('d-m-Y');
+            $visite_hote = Visite::find($visite->id);
             $nb++;
             $data= "data".$nb;
             $visiteurs = Visiteur::find($visite->visiteur_id);
@@ -31,7 +35,7 @@ class All_visitsController extends Controller
                     "nom_hote"=>$visite_hote->hote->nom_prenom_hote,
                     "heure" => $visite->heure_entre,
                     "heure_sortie" => $visite->heure_sortie,
-                    "date_visite" => $visite->date_visite
+                    "date_visite" => $date
                 ]);
             $tab [] = $$data;
     	}
@@ -41,10 +45,13 @@ class All_visitsController extends Controller
         $currentPageItems = $tabCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($tabCollection), $perPage);
         $paginatedItems->setPath($request->url());
-
+        session([
+            'tab' => $tab
+        ]);
        // return view('pages.visite_en_attente', ['tab' => $paginatedItems]);
     	return view('pages.all_visits', ['tab' =>$paginatedItems]);
     }
+    // details function 
     public function detail(Request $request, $id)
     {
     	  
@@ -67,7 +74,7 @@ class All_visitsController extends Controller
             return response()->json($my_data);
  
     }
-
+    // name search function 
     public function search(Request $request)
     {
         if($request->ajax())
@@ -91,13 +98,15 @@ class All_visitsController extends Controller
                  {
                     $visites = Visite::where('visiteur_id','=',$row->id)->whereNotNull('heure_sortie')->first();
                     $visite = $visites::find($visites->id);
+                    $date = new Carbon($visite->date_visite);
+                    $date = $date->format('d-m-Y');
                     $output .= '
                         <tr>
                              <td>'.$row->nom.' '.$row->prenoms.'</td>
                              <td> '.$visite->hote->nom_prenom_hote.'</td>
                              <td>'.$visite->heure_entre.' </td>
                              <td> '.$visite->heure_sortie.'</td>
-                             <td> '.$visite->date_visite.'</td>
+                             <td> '.$date.'</td>
                            <td><a class="show-modal btn btn-info btn-sm-5" data-id="'.$visite->id.'" href="/all_visits/'.$visite->id.'">Details</td>
                        </tr>
                     ';
@@ -136,13 +145,15 @@ class All_visitsController extends Controller
                  {
                     
                     $visite = Visite::find($visites->id);
+                    $date = new Carbon($visite->date_visite);
+                    $date = $date->format('d-m-Y');
                     $output .= '
                         <tr>
                              <td>'.$visites->visiteur->nom.' '.$visites->visiteur->prenoms.'</td>
                              <td> '.$visite->hote->nom_prenom_hote.'</td>
                              <td>'.$visite->heure_entre.' </td>
                              <td> '.$visite->heure_sortie.'</td>
-                             <td> '.$visite->date_visite.'</td>
+                             <td> '.$date.'</td>
                            <td><a class="show-modal btn btn-info btn-sm-5" data-id="'.$visite->id.'" href="/all_visits/'.$visite->id.'">Details</td>
                        </tr>
                     ';
@@ -156,9 +167,20 @@ class All_visitsController extends Controller
                        </tr>
                    ';
        }
+
        $data = array(
                'table_data'  => $output,
               );
+       session([
+            'data' => $data
+       ]);
        return response()->json($data);
+    }
+
+     // pdf function 
+    public function download_pdf()
+    {
+      $pdf = PDF::loadView('pages.pdf', session('tab'));
+      return $pdf->download('invoice.pdf');
     }
 }
